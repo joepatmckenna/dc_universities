@@ -1,0 +1,39 @@
+---
+title: "Univesities near Washington DC"
+author: "Joe McKenna"
+date: "January 2, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+```
+
+```{r}
+library(leaflet)
+
+links <- c(
+  '<a href="http://american.edu">American University</a>',
+  '<a href="http://catholic.edu">Catholic University</a>',
+  '<a href="http://gallaudet.edu">Gallaudet</a>',
+  '<a href="http://georgetown.edu">Georgetown</a>',
+  '<a href="http://www.gwu.edu">George Washington University </a>',
+  '<a href="http://howard.edu">Howard University</a>',
+  '<a href="http://sais-jhu">Johns Hopkins University School of Advanced International Studies</a>',
+  '<a href="http://udc.edu">University of DC</a>',
+  '<a href="http://umd.edu">University of Maryland</a>'
+  )
+
+lat = c(38.938760, 38.936863, 38.908421, 38.907611, 38.899578, 38.920077, 38.908180, 38.944368, 38.987386)
+
+lng = c(-77.087135, -76.998689, -76.992393, -77.072299, -77.047092, -77.026256, -77.040279, -77.065297, -76.942639)
+
+uni <- data.frame(lat=lat, lng=lng)
+
+uni <- uni %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup=links)
+
+uni
+```
